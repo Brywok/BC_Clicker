@@ -4,7 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
+
+
+    <ImageButton
+        android:id="@+id/myButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/coin3_button_foreground"
+        android:background="@color/counterBackgroundColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/bag_image"
@@ -13,28 +26,20 @@
         android:src="@mipmap/poor_image_foreground"
         android:scaleType="fitCenter"
         android:visibility="visible"
+        android:background="@color/counterBackgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/myButton"
         app:layout_constraintRight_toLeftOf="@+id/textCounter"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:visibility="visible"/>
 
-    <ImageButton
-        android:id="@+id/myButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/coin3_button_foreground"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
     <TextView
         android:id="@+id/textCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
-        android:textSize="20dp"
+        android:textSize="20sp"
+        android:background="@color/counterBackgroundColor"
         app:layout_constraintLeft_toRightOf="@+id/bag_image"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myButton"
@@ -42,10 +47,10 @@
 
 
     <Switch
-        android:id="@+id/darkModeSwitch"
+        android:id="@+id/nightModeSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dark Mode    "
+        android:text="Night Mode    "
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 

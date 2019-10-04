@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Class 1</string>
+
+    <string name="Setting">Setting</string>
+    <string name="Light">Light Mode</string>
+    <string name="Dark">Dark Mode</string>
+
+
 </resources>

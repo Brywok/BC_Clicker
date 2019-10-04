@@ -7,18 +7,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.Switch
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.class1.util.rotate90
 import com.example.class1.util.toggleVisibility
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
+import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
 
     private var counter: Long = 0
     var username: Any? = ""
+    private var nightModeSwitch: Switch? = null
+    private lateinit var saveData: SaveData
     fun getStore() =  getPreferences(Context.MODE_PRIVATE)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        saveData = SaveData(this)
+        if (saveData.loadDarkModeState() == true) {
+            setTheme(R.style.darkTheme)
+        } else
+            setTheme(R.style.AppTheme)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -31,10 +44,9 @@ class MainActivity : AppCompatActivity() {
         // can check shared preferences file
         // View > Tool Windows > Device File Explorer > data > data > com.example.class1 > shared_prefs
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             updateCounter(savedInstanceState.getLong(username.toString(), 0))
-        }
-        else if (getStore().contains(username.toString())){
+        } else if (getStore().contains(username.toString())) {
             updateCounter(getStore().getLong(username.toString(), 0))
         }
 
@@ -51,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             textCounter.text = counter.toString()
         }*/
 
-        myButton.setOnClickListener{
+        myButton.setOnClickListener {
             counter++
             updateCounter(counter)
 
@@ -63,18 +75,44 @@ class MainActivity : AppCompatActivity() {
                 else -> myButton.text
             }*/
         }
+
+        //darkModeSwitch.
+        nightModeSwitch = findViewById<View>(R.id.nightModeSwitch) as Switch?
+        if (saveData.loadDarkModeState() == true) {
+            nightModeSwitch!!.isChecked = true
+        }
+
+        //
+        nightModeSwitch!!.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                saveData.setDarkModeState(true)
+                restartApplication()
+            } else {
+                saveData.setDarkModeState(false)
+                restartApplication()
+            }
+        }
+
+        // Attempt to update/change username later
+        /*
+        private fun updateUsername(name: String){
+            username = name
+        }*/
     }
 
-    // Attempt to update/change username later
-    /*
-    private fun updateUsername(name: String){
-        username = name
-    }*/
+
 
     private fun updateCounter(count: Long){
         counter = count
         textCounter.text = counter.toString()
     }
+
+    private fun restartApplication() {
+        val i = Intent(applicationContext, MainActivity::class.java)
+        startActivity(i)
+        finish()
+    }
+
 
     override fun onPause() {
         super.onPause()
