@@ -1,20 +1,15 @@
-package com.example.class1
+package com.example.class1.ui
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.opengl.Visibility
-import androidx.appcompat.app.AppCompatActivity
+//import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.View
-import android.widget.Switch
-import androidx.appcompat.app.AppCompatDelegate
-import com.example.class1.util.rotate90
-import com.example.class1.util.toggleVisibility
-import kotlinx.android.synthetic.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
+import com.example.class1.R
+import com.example.class1.viewmodel.CountViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import android.content.Intent
+import java.util.*
 
+/*
 class MainActivity : AppCompatActivity() {
 
     private var counter: Long = 0
@@ -132,7 +127,30 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val COUNTER_KEY = "counterKey"
     }*/
-
-
 }
+*/
 
+//new
+class MainActivity : AppCompatActivity() {
+    private lateinit var countViewModel: CountViewModel
+
+    private var counter: Long = 0
+    private fun getUsername() = intent.extras?.get("username").toString().toLowerCase(Locale.US)
+
+    override fun onCreate(savedInstanceState: Bundle?){
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        countViewModel = ViewModelProviders.of( this).get(CountViewModel::class.java)
+        countViewModel.getUserCount(getUsername()).observe(this, androidx.lifecycle.Observer { updateCounter(it) })
+
+        myButton.setOnClickListener{
+            countViewModel.setUserCount(getUsername(), counter + 1)
+        }
+    }
+
+    private fun updateCounter(count: Long) {
+        counter = count
+        textCounter.text = counter.toString()
+    }
+}

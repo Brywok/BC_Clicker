@@ -19,19 +19,26 @@
 
     <!-- Dark application theme. -->
     <style name="darkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <!-- Customize your theme here.
         <item name="colorPrimaryNight">@color/colorPrimary</item>
-        <item name="colorPrimaryDarkNight">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDarkNight">@color/colorPrimaryDarkNight</item>
         <item name="colorAccentNight">@color/colorAccentNight</item>
         <item name="colorBackgroundNight">@color/colorBackgroundNight</item>
-        <item name="textColorNight">@color/textColorNight</item>
+        <item name="textColorNight">@color/textColorNight</item>-->
+        <item name="android:background">#000000</item> <!-- This line is changing the actionbar color -->
+        
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:colorBackground">#000000</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <!--<item name="actionBarStyle">@style/Widget.MyTheme.ActionBar</item>
+        <item name="android:actionBarStyle">@style/Widget.MyTheme.ActionBar</item>-->
 
 
-        <!-- Main homepage default theme AppTheme -->
+        <!-- Main homepage default theme AppTheme
         <item name="backgroundColor">#000000</item>
         <item name="card_background">#37474F</item>
         <item name="Text_Color">#FFFFFF</item>
-        <item name="Button_Color">#6200EA</item>
+        <item name="Button_Color">#6200EA</item>-->
 
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
