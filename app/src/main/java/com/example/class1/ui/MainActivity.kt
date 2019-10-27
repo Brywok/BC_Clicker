@@ -132,23 +132,29 @@ class MainActivity : AppCompatActivity() {
 
 //new
 class MainActivity : AppCompatActivity() {
+    // Declare our viewmodel for the count object which will be updated whenever counter changes
     private lateinit var countViewModel: CountViewModel
 
-    private var counter: Long = 0
+    private var counter: Long = 0 // Declare out counter var that will store number of user clicks, default value is 0
     private fun getUsername() = intent.extras?.get("username").toString().toLowerCase(Locale.US)
+    // retrieves the username that was stored in LoginActivity
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         countViewModel = ViewModelProviders.of( this).get(CountViewModel::class.java)
+        // Updates UI with the users last stored counter value
+        // retrieves the value from PREFS file through CountRepository
         countViewModel.getUserCount(getUsername()).observe(this, androidx.lifecycle.Observer { updateCounter(it) })
 
+        // Main button action that will increase the counter value by 1
         myButton.setOnClickListener{
             countViewModel.setUserCount(getUsername(), counter + 1)
         }
     }
 
+    // used to update the text field showing the users current click count
     private fun updateCounter(count: Long) {
         counter = count
         textCounter.text = counter.toString()

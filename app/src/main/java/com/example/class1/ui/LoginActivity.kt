@@ -13,9 +13,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // Activates the login text box receives whatever the user inputs into the text field for login username
         loginUsernameField.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+                //unused
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -26,8 +27,9 @@ class LoginActivity : AppCompatActivity() {
             }
 
         } )
+        //
         loginButton.setOnClickListener {
-
+           // passes the username from login screen to wherever we decide to pull it from
             startActivity(Intent(this, MainActivity::class.java).apply{putExtra("username", loginUsernameField.text) })
         }
     }
