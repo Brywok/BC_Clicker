@@ -12,6 +12,7 @@
 
     <EditText
         android:id="@+id/loginUsernameField"
+        android:hint="Username"
         android:layout_width="300dp"
         android:layout_height="wrap_content" />
 

@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
         // Activates the login text box receives whatever the user inputs into the text field for login username
         loginUsernameField.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //unused
+                p0?.apply { loginButton.isEnabled = length > 0 }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

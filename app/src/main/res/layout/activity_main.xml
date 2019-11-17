@@ -7,7 +7,6 @@
     android:background="@color/colorBackground"
     tools:context=".ui.MainActivity">
 
-
     <ImageButton
         android:id="@+id/myButton"
         android:layout_width="wrap_content"
@@ -27,8 +26,8 @@
         android:scaleType="fitCenter"
         android:visibility="visible"
         android:background="@color/counterBackgroundColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myButton"
+        app:layout_constraintBottom_toTopOf="@+id/myButton"
+        app:layout_constraintTop_toBottomOf="@id/nightModeSwitch"
         app:layout_constraintRight_toLeftOf="@+id/textCounter"
         app:layout_constraintLeft_toLeftOf="parent"
         tools:visibility="visible"/>
@@ -40,10 +39,10 @@
         android:fontFamily="sans-serif-black"
         android:textSize="20sp"
         android:background="@color/counterBackgroundColor"
+        app:layout_constraintBottom_toTopOf="@+id/myButton"
+        app:layout_constraintTop_toBottomOf="@id/nightModeSwitch"
         app:layout_constraintLeft_toRightOf="@+id/bag_image"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myButton"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
 
     <Switch
@@ -53,6 +52,15 @@
         android:text="Night Mode"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cryptoCurrencyList"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myButton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
